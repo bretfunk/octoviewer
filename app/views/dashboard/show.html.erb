@@ -1,0 +1,71 @@
+<h1>Welcome, <%= current_user.name%>!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      1 of 3
+<img src="<%= current_user.image_url %>", style="width:150px">
+
+<h2>Account Information</h2>
+<p>Github name: <%= current_user.name %></p>
+<p>Github nickname: <%= current_user.nickname %></p>
+<p>Github email: <%= current_user.email %></p>
+<p>Number of starred repos: <%= @starred_results.count %></p>
+<p>Followers: <%= @user_results["followers"] %></p>
+<p>Following: <%= @user_results["following"] %></p>
+<br>
+<h2>My Organizations</h2>
+<% @orgs_results.each do |org| %>
+  <p><%= org["name"] %></p>
+<% end %>
+<br>
+    </div>
+    <div class="col-6">
+      2 of 3 (wider)
+<h2>My Repos</h2>
+<% count = 0 %>
+<% @repos_results.each do |repo| %>
+  <p><%= repo["name"] %></p>
+  <a href="<%= repo["owner"]["html_url"] %>">Link to Repo</a>
+  <% count += 1 %>
+  <% break unless count < 5 %>
+  <br>
+<% end %>
+    </div>
+    <div class="col">
+      3 of 3
+<h2>Recent Activity</h2>
+<% count = 0 %>
+<% @events_results.each do |event| %>
+  <p><%= event["actor"]["display_login"] %></p>
+  <p><%= event["repo"]["name"] %></p>
+  <p><%= event["type"] %></p>
+  <img src="<%= event['actor']['avatar_url'] %>", style="width: 50px">
+  <% count += 1 %>
+  <% break unless count < 5 %>
+<% end %>
+<br>
+
+<h2>Activity From Users I Follow</h2>
+<% count = 0 %>
+<% @received_events_results.each do |event| %>
+<p><%= event["actor"]["display_login"] %></p>
+<img src="<%= event['actor']['avatar_url'] %>", style="width: 50px">
+<p><%= event["repo"]["name"] %></p>
+<% count += 1 %>
+<% break unless count < 5 %>
+<% end %>
+<br>
+
+    </div>
+  </div>
+</div>
+
+
+
+<%#Authenticate with my github account%>
+<%#View basic information about my account (profile pic, number of starred repos, followers, following)%>
+<%#View a summary feed of my recent activity (recent commits)%>
+<%#View a summary feed of recent activity from users whom I follow%>
+<%#View a list of organizations I’m a member of%>
+<%#View a list of my repositories%>
+

@@ -12,11 +12,10 @@ gem 'rspec-rails'
 gem 'figaro'
 gem 'omniauth-github'
 gem 'faraday'
-#gem 'bootstrap-sass', '~>3.3.6'
-gem 'bootstrap', '~> 4.0.0.beta'
+gem 'bootstrap-sass'
+gem 'sprockets-rails'
+gem 'popper_js'
 gem 'autoprefixer-rails'
-gem 'jquery'
-gem 'jquery-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'capybara'
 end
 
 group :development do
