@@ -11,38 +11,24 @@
   </head>
 
   <body>
-    <% if current_user %>
-      hello, <%= current_user.name %>.
-      <%= link_to "Logout", logout_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in with Github", github_login_path %>
-    <% end %>
 
-
-
-
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="https://image.freepik.com/free-vector/pirate-octopus-design_1152-58.jpg">Octoviewer</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+          <li class="nav-link">
+            <% if current_user %>
+              <li><a class="nav-link" href="#">Welcome, <%= current_user.name %> </a></li>
+              <li><a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a></li>
+          <% else %>
+            <li><a class="nav-link" href="/auth/github">Login<span class="sr-only">(current)</span></a></li>
+          <% end %>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </nav>
 
