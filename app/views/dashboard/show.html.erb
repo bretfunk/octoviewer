@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col-2">
       <h1><%= current_user.name%></h1>
       <img src="<%= current_user.image_url %>", style="width:150px">
       <br>
@@ -22,27 +22,66 @@
     <div class="col-6">
       <h2>My Repos</h2>
       <% count = 0 %>
+      <div class="panel-body">
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>A</th>
+              <th>B</th>
+              </tr>
+                </thead>
+                <tbody>
       <% @repos_results.each do |repo| %>
+        <tr>
+          <td>
         <p><%= repo["name"] %></p>
+          </td>
+          <td>
         <p><a href="<%= repo["owner"]["html_url"] %>">Link to Repo</a></p>
+          </td>
         <% count += 1 %>
         <% break unless count < 15 %>
       <% end %>
+          </tbody>
+        </table>
+      </div>
       <br>
     </div>
-    <div class="col">
+    <div class="col-4">
       <h2>Recent Activity</h2>
+      <div class="panel-body">
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
       <% count = 0 %>
       <% @events_results.each do |event| %>
-        <p><%= event["actor"]["display_login"] %></p>
-        <p><%= event["repo"]["name"] %></p>
-        <p><%= event["type"] %></p>
-        <%#<p><%= event["payload"]["commits"][0]["message"] %></p>%>
-        <%#^^^ works in byebug but not in the code%>
+        <td>
+        <%= event["actor"]["display_login"] %>
+        </td>
+        <td>
+        <%= event["repo"]["name"] %>
+        </td>
+        <td>
+        <%= event["type"] %>
+        </td>
+        <td>
         <img src="<%= event['actor']['avatar_url'] %>", style="width: 50px">
+        </td>
         <% count += 1 %>
         <% break unless count < 5 %>
       <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <br>
 
       <h2>Activity From Users I Follow</h2>
