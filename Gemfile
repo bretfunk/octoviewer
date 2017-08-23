@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'sprockets-rails'
 gem 'popper_js'
 gem 'autoprefixer-rails'
+gem 'jquery-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
