@@ -1,4 +1,3 @@
-<% byebug %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
@@ -87,7 +86,7 @@
 
       <h2>Activity From Users I Follow</h2>
       <% count = 0 %>
-      <% User.received_events_results(current_user).each do |event| %>
+      <% @received_events_results.each do |event| %>
         <img src="<%= event['actor']['avatar_url'] %>", style="width: 50px">
         <p><%= event["actor"]["display_login"] %></p>
         <p><%= event["repo"]["name"] %></p>

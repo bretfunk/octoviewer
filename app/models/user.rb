@@ -20,27 +20,27 @@ class User < ApplicationRecord
     user
   end
 
-  def self.user_results(current_user)
+  def user_results(current_user)
     GithubService.user_results(current_user)
   end
 
-  def self.starred_results(current_user)
+  def starred_results(current_user)
     GithubService.starred_results(current_user)
   end
 
-  def self.events_results(current_user)
+  def events_results(current_user)
     GithubService.events_results(current_user)
   end
 
-  def self.received_events_results(current_user)
+  def received_events_results(current_user)
     GithubService.events_results(current_user)
   end
 
-  def self.orgs_results(current_user)
+  def orgs_results(current_user)
     GithubService.events_results(current_user)
   end
 
-  def self.repos_results(current_user)
+  def repos_results(current_user)
     GithubService.events_results(current_user)
   end
 end
