@@ -1,17 +1,28 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col-2">
-    <h1><%= current_user.name%></h1>
-    <img src="<%= current_user.image_url %>" class="img-fluid">
-    <br>
+  <div class="row">
+    <div class="col-2">
+      <h1><%= current_user.name%></h1>
+      <img src="<%= current_user.image_url %>" class="img-fluid">
+      <br>
 
-    <h2>Account Information</h2>
-    <p>Name: <%= current_user.name %></p>
-    <p>Nickname: <%= current_user.nickname %></p>
-    <p>Email: <%= current_user.email %></p>
-    <p>Starred repos: <%= User.starred_results(current_user).count %></p>
-    <p>Followers: <%= User.user_results(current_user)[:followers] %></p>
-    <p>Following: <%= User.user_results(current_user)[:following] %></p>
+      <h2>Account Information</h2>
+      <p>Name: <%= current_user.name %></p>
+      <p>Nickname: <%= current_user.nickname %></p>
+      <p>Email: <%= current_user.email %></p>
+      <p>Starred repos: <%= User.starred_results(current_user).count %></p>
+      <p>Followers: <%= User.user_results(current_user)[:followers] %></p>
+      <p>Following: <%= User.user_results(current_user)[:following] %></p>
+      <br>
+
+      <br>
+      <h2>Create New Repo</h2>
+      <form>
+        <form>
+          <div class="form-group">
+            <label for="reponame">Repo Name</label>
+            <input type="reponame" class="form-control" id="reponame"  placeholder="Enter Repo Name">
+          </div>
+    </form>
     <br>
 
     <div class="panel-body">

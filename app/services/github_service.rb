@@ -6,34 +6,37 @@ class GithubService
     @nickname  = current_user.nickname
     @token     = current_user.token
     @conn = Faraday.new(url: "https://api.github.com") do |faraday|
-      #faraday.headers["access_token"] = ENV["#{current_user.token}"]
-      faraday.headers["X-API-KEY"] = ENV["#{current_user.token}"]
+      faraday.authorization :Token, @current_user.token
       faraday.adapter Faraday.default_adapter
     end
   end
 
   def user_results
-    parse(@conn.get("/user?access_token=#{token}"))
+    parse(@conn.get("/user"))
   end
 
   def starred_results
-    parse(@conn.get("/users/#{nickname}/starred?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/starred"))
   end
 
   def events_results
-    parse(@conn.get("/users/#{nickname}/events?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/events"))
   end
 
   def received_events_results
-    parse(@conn.get("/users/#{nickname}/received_events?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/received_events"))
   end
 
   def orgs_results
-    parse(@conn.get("/users/#{nickname}/orgs?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/orgs"))
   end
 
   def repos_results
-    parse(@conn.get("/users/#{nickname}/repos?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/repos"))
+  end
+
+  def create_repo(repo_name)
+    parse(@conn.post("/users#{nickname}/repos?name=)#{repo_name}"))
   end
 
   def self.user_results(current_user)
@@ -58,6 +61,10 @@ class GithubService
 
   def self.repos_results(current_user)
     new(current_user).repos_results
+  end
+
+  def self.create_repo(current_user, repo_name)
+    new(current_user).create_repo(repo_name)
   end
 
   def parse(response)

@@ -43,4 +43,8 @@ class User < ApplicationRecord
   def self.repos_results(current_user)
     GithubService.repos_results(current_user)
   end
+
+  def self.create_repo(current_user, repo_name)
+    GithubService.create_repo(current_user, repo_name)
+  end
 end
