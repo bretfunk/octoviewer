@@ -19,6 +19,6 @@ class DashboardController < ApplicationController
     @repos_results = Display.repos_results(current_user)
     #repos = Faraday.get("https://api.github.com/users/#{current_user.nickname}/repos?access_token=#{current_user.token}")
     #@repos_results = JSON.parse(repos.body, symbolize_name: true)
-    byebug
+    #byebug
   end
 end

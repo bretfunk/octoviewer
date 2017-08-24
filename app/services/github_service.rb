@@ -1,8 +1,10 @@
 class GithubService
-  attr_reader :conn, :nickname
+  attr_reader :conn, :nickname, :token, :current_user
 
   def initialize(current_user)
-    @nickname = current_user.nickname
+    @current_user      = current_user
+    @nickname  = current_user.nickname
+    @token     = current_user.token
     @conn = Faraday.new(url: "https://api.github.com") do |faraday|
       #faraday.headers["access_token"] = ENV["#{current_user.token}"]
       faraday.headers["X-API-KEY"] = ENV["#{current_user.token}"]
@@ -11,28 +13,27 @@ class GithubService
   end
 
   def user_results
-    parse(@conn.get("/user"))
+    parse(@conn.get("/user?access_token=#{token}"))
   end
 
   def starred_results
-    parse(@conn.get("/users/#{nickname}/starred"))
+    parse(@conn.get("/users/#{nickname}/starred?access_token=#{token}"))
   end
 
   def events_results
-    byebug
-    parse(@conn.get("/users/#{nickname}/events"))
+    parse(@conn.get("/users/#{nickname}/events?access_token=#{token}"))
   end
 
   def received_events_results
-    parse(@conn.get("/users/#{nickname}/received_events"))
+    parse(@conn.get("/users/#{nickname}/receive?access_token=#{token}"))
   end
 
   def orgs_results
-    parse(@conn.get("/users/#{nickname}/orgs"))
+    parse(@conn.get("/users/#{nickname}/orgs?access_token=#{token}"))
   end
 
   def repos_results
-    parse(@conn.get("/users/#{nickname}/repos"))
+    parse(@conn.get("/users/#{nickname}/repos?access_token=#{token}"))
   end
 
   def self.user_results(current_user)
@@ -44,7 +45,7 @@ class GithubService
   end
 
   def self.events_results(current_user)
-    new(current_user).starred_results
+    new(current_user).events_results
   end
 
   def self.received_events_results(current_user)
