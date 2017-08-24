@@ -8,8 +8,8 @@ RSpec.feature "user logs in" do
     expect(page.status_code).to eq(200)
     expect(current_path).to eq(root_path)
 
-    expect(page).to have_link("Login")
-    click_link "Login"
+    expect(page).to have_link("Login with Github")
+    click_link "Login with Github"
 
     expect(current_path).to eq(user_path)
     expect(page).to have_content("Bret Funk")
