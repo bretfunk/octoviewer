@@ -6,8 +6,6 @@ class User < ApplicationRecord
   validates :image_url, presence: :true
   validates :token, presence: :true
   validates :provider, presence: :true
-  validates :created_at, presence: :true
-  validates :updated_at, presence: :true
 
   def self.find_or_create_by_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
@@ -20,5 +18,33 @@ class User < ApplicationRecord
 
     user.save
     user
+  end
+
+  def self.user_results(current_user)
+    GithubService.user_results(current_user)
+  end
+
+  def self.starred_results(current_user)
+    GithubService.starred_results(current_user)
+  end
+
+  def self.events_results(current_user)
+    GithubService.events_results(current_user)
+  end
+
+  def self.received_events_results(current_user)
+    GithubService.received_events_results(current_user)
+  end
+
+  def self.orgs_results(current_user)
+    GithubService.orgs_results(current_user)
+  end
+
+  def self.repos_results(current_user)
+    GithubService.repos_results(current_user)
+  end
+
+  def self.create_repo(current_user, repo_name)
+    GithubService.create_repo(current_user, repo_name)
   end
 end
