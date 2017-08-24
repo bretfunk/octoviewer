@@ -25,7 +25,7 @@ class GithubService
   end
 
   def received_events_results
-    parse(@conn.get("/users/#{nickname}/receive?access_token=#{token}"))
+    parse(@conn.get("/users/#{nickname}/received_events?access_token=#{token}"))
   end
 
   def orgs_results
