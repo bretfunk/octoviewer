@@ -5,7 +5,7 @@
       <img src="<%= current_user.image_url %>" class="img-fluid">
       <br>
       <div class="panel-body">
-        <h2>Profile</h2>
+        <h
         <p>Name: <%= current_user.name %></p>
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
@@ -37,25 +37,22 @@
         <div class="form-group form-responsive">
           <%= form_tag(repo_path) do %>
             <%= text_field_tag(:repo_name) %>
-            <%= submit_tag "Submit" %>
+            <%= submit_tag "Submit", class: "btn btn-primary" %>
           </div>
         <% end %>
     <br>
 
     <div class="panel-body table-responsive table-lg" >
     <h2>Repos</h2>
-    <% count = 0 %>
       <table class="table table-hover table-striped table-bordered">
         <thead>
         </thead>
         <tbody>
-          <% User.repos_results(current_user).each do |repo| %>
+          <% User.repos_results(current_user).sort_by{|k| k[:created_at]}.reverse.each do |repo| %>
             <tr>
               <td><%= repo[:name] %>
-            <td><a href="<%= repo[:owner][:url] %>">Link to Repo</a></td>
+            <td><a href="<%= repo[:html_url] %>">Link to Repo</a></td>
             </tr>
-              <% count += 1 %>
-              <% break unless count < 25 %>
             <% end %>
         </tbody>
       </table>
@@ -95,7 +92,7 @@
           <% count = 0 %>
           <% User.received_events_results(current_user).each do |event| %>
             <tr>
-              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:55%"></td>
+              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:65%"></td>
               <td><%= event[:actor][:display_login] %></td>
               <td><%= event[:repo][:name] %></td>
               <td><%= event[:type] %></td>
