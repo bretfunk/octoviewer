@@ -36,7 +36,14 @@ class GithubService
   end
 
   def create_repo(repo_name)
-    parse(@conn.post("/users#{nickname}/repos?name=)#{repo_name}"))
+    repo_hash = {name: repo_name}
+    #parse(@conn.post("/users#{nickname}/repos?name=#{repo_name}"))
+    @conn.post do |req|
+      req.url "/user/repos"
+      req.headers['Authorization'] = "token #{current_user.token}"
+      req.headers['Content-Type'] = 'application/json'
+      req.body = repo_hash.to_json
+    end
   end
 
   def self.user_results(current_user)

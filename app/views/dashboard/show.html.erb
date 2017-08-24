@@ -1,37 +1,28 @@
+<% byebug %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
       <h1><%= current_user.name%></h1>
       <img src="<%= current_user.image_url %>" class="img-fluid">
       <br>
-
-      <h2>Account Information</h2>
+      <div class="panel-body">
+      <h2>Profile</h2>
       <p>Name: <%= current_user.name %></p>
       <p>Nickname: <%= current_user.nickname %></p>
       <p>Email: <%= current_user.email %></p>
       <p>Starred repos: <%= User.starred_results(current_user).count %></p>
       <p>Followers: <%= User.user_results(current_user)[:followers] %></p>
       <p>Following: <%= User.user_results(current_user)[:following] %></p>
+      </div>
       <br>
 
-      <br>
-      <h2>Create New Repo</h2>
-      <form>
-        <form>
-          <div class="form-group">
-            <label for="reponame">Repo Name</label>
-            <input type="reponame" class="form-control" id="reponame"  placeholder="Enter Repo Name">
-          </div>
-    </form>
-    <br>
-
-    <div class="panel-body">
-      <table class="table table-responsive table-hover table-striped table-bordered">
+    <div class="panel-body table-responsive">
+          <h2>Organizations</h2>
+      <table class="table table-hover table-striped table-bordered">
         <thead>
         </thead>
         <tbody>
-          <h2>Organizations</h2>
-          <% User.events_results(current_user).each do |org| %>
+          <% User.orgs_results(current_user).each do |org| %>
             <tr>
               <td><%= org[:name] %></td>
             </tr>
@@ -43,10 +34,18 @@
 
   </div>
   <div class="col-5">
+      <h2>Create Repo</h2>
+      <form>
+          <div class="form-group">
+            <input type="reponame" class="form-control" id="reponame"  placeholder="Enter Repo Name">
+          </div>
+    </form>
+    <br>
+
+    <div class="panel-body table-responsive table-lg" >
     <h2>Repos</h2>
     <% count = 0 %>
-    <div class="panel-body">
-      <table class="table table-lg table-responsive table-hover table-striped table-bordered">
+      <table class="table table-hover table-striped table-bordered">
         <thead>
         </thead>
         <tbody>
@@ -65,9 +64,9 @@
 
   </div>
   <div class="col-5">
+    <div class="panel-body table-responsive">
     <h2>Recent Activity</h2>
-    <div class="panel-body">
-      <table class="table table-responsive table-hover table-striped table-bordered">
+      <table class="table table-hover table-striped table-bordered">
         <thead>
         </thead>
         <tbody>
@@ -87,8 +86,8 @@
     </div>
     <br>
 
-    <div class="panel-body">
-      <table class="table table-responsive table-hover table-striped table-bordered">
+    <div class="panel-body table-responsive">
+      <table class="table table-hover table-striped table-bordered">
         <thead>
         </thead>
         <tbody>
