@@ -13,7 +13,7 @@
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
         <p>Starred repos: <%= User.starred_results(current_user).count %></p>
-        <p>Followers: <%= User.user_results(current_user)[:followers] %></p>
+        <p>Followers: <%= @profile.user_results[:followers] %></p>
         <p>Following: <%= User.user_results(current_user)[:following] %></p>
       </div>
       <br>
