@@ -1,4 +1,3 @@
-<% byebug %>
   <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
@@ -27,7 +26,7 @@
           <tbody>
             <% @profile.orgs_results.each do |org| %>
               <tr>
-                <%#<td><%= org[:name] %></td>%>
+                <td><%= org[:login] %></td>
               </tr>
             <% end %>
           </tbody>

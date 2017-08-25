@@ -68,7 +68,7 @@ describe GithubService do
 
         repos = GithubService.new(user).repos_results
 
-        expect(repos.class).to eq(Array)
+        expect(repos.class).to eq(Hash)
         expect(repo.first).to have_key(:name)
       end
     end
@@ -92,7 +92,7 @@ describe GithubService do
 
         starred = GithubService.new(user).starred_results
 
-        expect(starred.class).to eq(Array)
+        expect(starred.class).to eq(Hash)
         expect(starred.first).to have_key(:name)
       end
     end
@@ -115,7 +115,7 @@ describe GithubService do
 
         activity = GithubService.new(user).events_results
 
-        expect(activity.class).to eq(Array)
+        expect(activity.class).to eq(Hash)
         expect(activity.first).to have_key(:repo)
       end
     end
