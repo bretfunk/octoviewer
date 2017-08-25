@@ -7,6 +7,14 @@ class DashboardPresenter
     GithubService.starred_results(user).count
   end
 
+  def followers
+    GithubService.user_results(user)[:followers]
+  end
+
+  def following
+    GithubService.user_results(user)[:following]
+  end
+
   def repos
     Repo.for_user(user)
   end
@@ -17,6 +25,10 @@ class DashboardPresenter
 
   def received_events
     ReceivedEvent.for_user(user)
+  end
+
+  def events
+    Event.for_user(user)
   end
 
   private

@@ -13,8 +13,8 @@
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
         <p>Starred repos: <%= @presenter.starred_repos_count%></p>
-        <p>Followers: <%= @profile.user_results[:followers] %></p>
-        <p>Following: <%= @profile.user_results[:following] %></p>
+        <p>Followers: <%= @presenter.followers %></p>
+        <p>Following: <%= @presenter.following %></p>
       </div>
       <br>
 
@@ -71,12 +71,12 @@
         </thead>
         <tbody>
           <% count = 0 %>
-          <% @profile.events_results.each do |event| %>
+          <% @presenter.events.each do |event| %>
             <tr>
-              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:40%"></td>
-              <td><%= event[:actor][:display_login] %></td>
-              <td><%= event[:repo][:name] %></td>
-              <td><%= event[:type] %></td>
+              <td><img src="<%= event.image %>" class="img-thumbnail" style="width:40%"></td>
+              <td><%= event.login %></td>
+              <td><%= event.repo %></td>
+              <td><%= event.type %></td>
             </tr>
             <% count += 1 %>
             <% break unless count < 5 %>
