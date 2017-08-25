@@ -1,7 +1,7 @@
 class RepoController < ApplicationController
 
   def create
-    if User.create_repo(current_user, params[:repo_name])
+    if GithubService.create_repo(current_user, params[:repo_name])
       flash[:success] = "Repo created"
       redirect_to dashboard_path
     else
