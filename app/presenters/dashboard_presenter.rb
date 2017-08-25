@@ -11,6 +11,14 @@ class DashboardPresenter
     Repo.for_user(user)
   end
 
+  def orgs
+    Org.for_user(user)
+  end
+
+  def received_events
+    ReceivedEvent.for_user(user)
+  end
+
   private
   attr_reader :user
 end

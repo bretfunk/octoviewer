@@ -24,9 +24,9 @@
           <thead>
           </thead>
           <tbody>
-            <% @profile.orgs_results.each do |org| %>
+            <% @presenter.orgs.each do |org| %>
               <tr>
-                <td><%= org[:login] %></td>
+                <td><%= org.login %></td>
               </tr>
             <% end %>
           </tbody>
@@ -93,12 +93,12 @@
         <tbody>
           <h2>Recent Activity From Users I Follow</h2>
           <% count = 0 %>
-          <% @profile.received_events_results.each do |event| %>
+          <% @presenter.received_events.each do |event| %>
             <tr>
-              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:40%"></td>
-              <td><%= event[:actor][:display_login] %></td>
-              <td><%= event[:repo][:name] %></td>
-              <td><%= event[:type] %></td>
+              <td><img src="<%= event.pic %>" class="img-thumbnail" style="width:40%"></td>
+              <td><%= event.login %></td>
+              <td><%= event.repo %></td>
+              <td><%= event.type %></td>
             </tr>
             <% count += 1 %>
             <% break unless count < 5 %>
