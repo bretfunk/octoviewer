@@ -12,7 +12,7 @@
         <p>Name: <%= current_user.name %></p>
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
-        <p>Starred repos: <%= @profile.starred_results.count %></p>
+        <p>Starred repos: <%= @presenter.starred_repos_count%></p>
         <p>Followers: <%= @profile.user_results[:followers] %></p>
         <p>Following: <%= @profile.user_results[:following] %></p>
       </div>
@@ -51,10 +51,10 @@
         <thead>
         </thead>
         <tbody>
-          <% @profile.repos_results.sort_by{|k| k[:created_at]}.reverse.each do |repo| %>
+          <% @presenter.repos.each do |repo| %>
             <tr>
-              <td><%= repo[:name] %>
-            <td><a href="<%= repo[:html_url] %>">Link to Repo</a></td>
+              <td><%= repo.name %>
+            <td><a href="<%= repo.url %>">Link to Repo</a></td>
             </tr>
             <% end %>
         </tbody>
