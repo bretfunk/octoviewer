@@ -9,8 +9,6 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:image_url) }
   it { should validate_presence_of(:token) }
   it { should validate_presence_of(:provider) }
-  it { should validate_presence_of(:created_at) }
-  it { should validate_presence_of(:updated_at) }
 
   it "creates or updates itself from an oauth hash" do
     auth = {"provider"=>"github",

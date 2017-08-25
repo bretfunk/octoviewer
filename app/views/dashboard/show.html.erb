@@ -12,9 +12,9 @@
         <p>Name: <%= current_user.name %></p>
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
-        <p>Starred repos: <%= User.starred_results(current_user).count %></p>
-        <p>Followers: <%= User.user_results(current_user)[:followers] %></p>
-        <p>Following: <%= User.user_results(current_user)[:following] %></p>
+        <p>Starred repos: <%= @profile.starred_results.count %></p>
+        <p>Followers: <%= @profile.user_results[:followers] %></p>
+        <p>Following: <%= @profile.user_results[:following] %></p>
       </div>
       <br>
 
@@ -24,9 +24,9 @@
           <thead>
           </thead>
           <tbody>
-            <% User.orgs_results(current_user).each do |org| %>
+            <% @profile.orgs_results.each do |org| %>
               <tr>
-                <td><%= org[:name] %></td>
+                <td><%= org[:login] %></td>
               </tr>
             <% end %>
           </tbody>
@@ -51,7 +51,7 @@
         <thead>
         </thead>
         <tbody>
-          <% User.repos_results(current_user).sort_by{|k| k[:created_at]}.reverse.each do |repo| %>
+          <% @profile.repos_results.sort_by{|k| k[:created_at]}.reverse.each do |repo| %>
             <tr>
               <td><%= repo[:name] %>
             <td><a href="<%= repo[:html_url] %>">Link to Repo</a></td>
@@ -71,7 +71,7 @@
         </thead>
         <tbody>
           <% count = 0 %>
-          <% User.events_results(current_user).each do |event| %>
+          <% @profile.events_results.each do |event| %>
             <tr>
               <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:40%"></td>
               <td><%= event[:actor][:display_login] %></td>
@@ -93,9 +93,9 @@
         <tbody>
           <h2>Recent Activity From Users I Follow</h2>
           <% count = 0 %>
-          <% User.received_events_results(current_user).each do |event| %>
+          <% @profile.received_events_results.each do |event| %>
             <tr>
-              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:65%"></td>
+              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:40%"></td>
               <td><%= event[:actor][:display_login] %></td>
               <td><%= event[:repo][:name] %></td>
               <td><%= event[:type] %></td>
