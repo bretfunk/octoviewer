@@ -13,7 +13,7 @@
         <p>Name: <%= current_user.name %></p>
         <p>Nickname: <%= current_user.nickname %></p>
         <p>Email: <%= current_user.email %></p>
-        <p>Starred repos: <%= User.starred_results(current_user).count %></p>
+        <p>Starred repos: <%= @profile.starred_results.count %></p>
         <p>Followers: <%= @profile.user_results[:followers] %></p>
         <p>Following: <%= @profile.user_results[:following] %></p>
       </div>
@@ -27,7 +27,7 @@
           <tbody>
             <% @profile.orgs_results.each do |org| %>
               <tr>
-                <td><%= org[:name] %></td>
+                <%#<td><%= org[:name] %></td>%>
               </tr>
             <% end %>
           </tbody>
@@ -96,7 +96,7 @@
           <% count = 0 %>
           <% @profile.received_events_results.each do |event| %>
             <tr>
-              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:65%"></td>
+              <td><img src="<%= event[:actor][:avatar_url] %>" class="img-thumbnail" style="width:40%"></td>
               <td><%= event[:actor][:display_login] %></td>
               <td><%= event[:repo][:name] %></td>
               <td><%= event[:type] %></td>

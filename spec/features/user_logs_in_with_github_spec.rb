@@ -1,15 +1,20 @@
 require 'rails_helper'
+require 'ostruct'
 
 RSpec.feature "user logs in" do
   scenario "using github" do
     VCR.use_cassette("features/github_login") do
 
-        user = OpenStruct.new(
-          id: 100,
-          nickname: "bretfunk",
-          uid: "2019012",
-          token: ENV['token'],
-          name: "Bret Funk")
+        #user = OpenStruct.new(
+          #id: 100,
+          #uid: "2019012",
+          #nickname: "bretfunk",
+          #name: "Bret Funk",
+          #email: "bret.e.funk@gmail.com",
+          #image_url: "https://avatars3.githubusercontent.com/u/20119012?v=4",
+          #token: ENV['token'],
+          #provider: "github"
+        #)
 
     visit root_path
     stub_omniauth
